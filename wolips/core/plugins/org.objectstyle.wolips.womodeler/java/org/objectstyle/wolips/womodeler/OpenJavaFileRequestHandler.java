@@ -38,40 +38,38 @@ public class OpenJavaFileRequestHandler implements IRequestHandler {
 		final IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject( appName );
 
 		if( project != null ) {
-			if( className != null ) {
-				Display.getDefault().asyncExec( new Runnable() {
-					public void run() {
-						IJavaProject javaProject = JavaCore.create( project );
-						try {
-							IType type = javaProject.findType( className );
-							if( type != null ) {
-								IEditorPart editorPart = JavaUI.openInEditor( type, true, true );
+			Display.getDefault().asyncExec( new Runnable() {
+				public void run() {
+					IJavaProject javaProject = JavaCore.create( project );
+					try {
+						IType type = javaProject.findType( className );
+						if( type != null ) {
+							IEditorPart editorPart = JavaUI.openInEditor( type, true, true );
 
-								if( editorPart instanceof ITextEditor ) {
-									ITextEditor editor = (ITextEditor)editorPart;
+							if( editorPart instanceof ITextEditor ) {
+								ITextEditor editor = (ITextEditor)editorPart;
 
-									IDocumentProvider provider = editor.getDocumentProvider();
-									IDocument document = provider.getDocument( editor.getEditorInput() );
+								IDocumentProvider provider = editor.getDocumentProvider();
+								IDocument document = provider.getDocument( editor.getEditorInput() );
 
-									try {
-										int lineStart = document.getLineOffset( Integer.parseInt( lineNumber ) );
-										editor.selectAndReveal( lineStart, 0 );
+								try {
+									int lineStart = document.getLineOffset( Integer.parseInt( lineNumber ) );
+									editor.selectAndReveal( lineStart, 0 );
 
-										//    					     page.activate(editor);
-									}
-									catch( BadLocationException x ) {
-										// ignore
-									}
+									//    					     page.activate(editor);
 								}
-
+								catch( BadLocationException x ) {
+									// ignore
+								}
 							}
-						}
-						catch( Throwable e1 ) {
-							e1.printStackTrace();
+
 						}
 					}
-				} );
-			}
+					catch( Throwable e1 ) {
+						e1.printStackTrace();
+					}
+				}
+			} );
 		}
 		request.getWriter().println( "ok" );
 	}
