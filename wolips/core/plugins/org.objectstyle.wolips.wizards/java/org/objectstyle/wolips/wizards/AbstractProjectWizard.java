@@ -67,10 +67,6 @@ import org.eclipse.ui.IWorkbench;
  * @author ulrich
  */
 public abstract class AbstractProjectWizard extends NewWOProjectWizard {
-	/**  */
-	public AbstractProjectWizard() {
-		super();
-	}
 
 	public abstract String getWindowTitle();
 
