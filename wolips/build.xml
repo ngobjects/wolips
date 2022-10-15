@@ -41,7 +41,6 @@
 		<!-- ant dir="maven" target="all" / -->
 		<antcall target="jprofiler" />
 		<antcall target="jrebel" />
-		<ant dir="scripting" target="all" />
 		<!-- ant dir="apple" target="all" / -->
 	</target>
 
@@ -71,7 +70,6 @@
 		<!-- ant dir="apple" target="dist" / -->
 		<antcall target="jprofiler" />
 		<antcall target="jrebel" />
-		<ant dir="scripting" target="dist" />
 		<copy file="update/local/site.xml" todir="../${build.output.dist.dir}" overwrite="true" />
 		<replace file="../${build.output.dist.dir}/site.xml" token="${build.version.to.replace}" value="${build.version}" />
 	</target>
