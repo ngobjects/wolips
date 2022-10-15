@@ -285,18 +285,4 @@
                menubarPath="org.objectstyle.wolips.ui.ResourceContributions/group0"/>
       </objectContribution>
    </extension>
-   <extension
-         point="org.eclipse.ui.importWizards">
-      <category
-            id="org.objectstyle.wolips.wizards.actions.importEOModelCategory"
-            name="WOLips">
-      </category>
-      <wizard
-            category="org.objectstyle.wolips.wizards.actions.importEOModelCategory"
-            class="org.objectstyle.wolips.wizards.actions.NewEOModelImportWizard"
-            icon="icons/woproject/eomodel_wiz.gif"
-            id="org.objectstyle.wolips.wizards.actions.NewEOModelImportWizard"
-            name="Import EOModels">
-      </wizard>
-   </extension>
 </plugin>
