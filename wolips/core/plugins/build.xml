@@ -51,7 +51,6 @@
 		<ant dir="org.objectstyle.wolips.htmlpreview" target="all" />
 		<ant dir="org.objectstyle.wolips.wooeditor" target="all" />
 		<ant dir="org.objectstyle.wolips.componenteditor" target="all" />
-		<ant dir="org.objectstyle.wolips.ruleeditor" target="all" />
 		<ant dir="org.objectstyle.wolips.woproject.ant" target="all" />
 		<ant dir="org.objectstyle.wolips.womodeler" target="all" />
 		<ant dir="org.objectstyle.wolips.debug" target="all" />
@@ -98,7 +97,6 @@
 		<ant dir="org.objectstyle.wolips.wodclipse" target="dist" />
 		<ant dir="org.objectstyle.wolips.tkhtmleditor" target="dist" />
 		<ant dir="org.objectstyle.wolips.componenteditor" target="dist" />
-		<ant dir="org.objectstyle.wolips.ruleeditor" target="dist" />
 		<ant dir="org.objectstyle.wolips.woproject.ant" target="dist" />
 		<ant dir="org.objectstyle.wolips.womodeler" target="dist" />
 		<ant dir="org.objectstyle.wolips.builder" target="dist" />
