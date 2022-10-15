@@ -71,7 +71,7 @@ public class CreateJavaClassFromNGHTMLTemplateAction implements IObjectActionDel
 		IStructuredSelection selection = (IStructuredSelection) mySelection;
 		if (selection != null && !selection.isEmpty()) {
 			IResource modelFile = (IResource) selection.getFirstElement();
-			CreateEOGenFromEOModelWorkspaceJob generateJob = new CreateEOGenFromEOModelWorkspaceJob(modelFile, false);
+			CreateJavaClassFromNGHTMLTemplateWorkspaceJob generateJob = new CreateJavaClassFromNGHTMLTemplateWorkspaceJob(modelFile, false);
 			generateJob.schedule();
 		}
 	}

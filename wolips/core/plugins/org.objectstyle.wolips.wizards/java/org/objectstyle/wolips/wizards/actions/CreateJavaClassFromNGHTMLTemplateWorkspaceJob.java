@@ -73,12 +73,12 @@ import org.objectstyle.wolips.eomodeler.core.model.IEOModelGroupFactory;
 import org.objectstyle.wolips.eomodeler.editors.EOModelErrorDialog;
 import org.objectstyle.wolips.wizards.EOGeneratorWizard;
 
-public class CreateEOGenFromEOModelWorkspaceJob extends WorkspaceJob {
+public class CreateJavaClassFromNGHTMLTemplateWorkspaceJob extends WorkspaceJob {
 	private IResource _modelFile;
 
 	private boolean _createEOModelGroup;
 
-	public CreateEOGenFromEOModelWorkspaceJob(IResource modelFile, boolean createEOModelGroup) {
+	public CreateJavaClassFromNGHTMLTemplateWorkspaceJob(IResource modelFile, boolean createEOModelGroup) {
 		super((createEOModelGroup) ? "Creating EOModelGroup File" : "Creating EOGenerator File ...");
 		_modelFile = modelFile;
 		_createEOModelGroup = createEOModelGroup;
