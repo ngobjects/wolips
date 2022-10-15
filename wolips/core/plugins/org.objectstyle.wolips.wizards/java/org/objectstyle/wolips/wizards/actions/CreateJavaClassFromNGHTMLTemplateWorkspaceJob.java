@@ -49,8 +49,8 @@
  */
 package org.objectstyle.wolips.wizards.actions;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -58,64 +58,42 @@ import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.objectstyle.wolips.baseforplugins.util.URLUtils;
 import org.objectstyle.wolips.baseforuiplugins.utils.ErrorUtils;
-import org.objectstyle.wolips.eogenerator.core.model.EOGeneratorModel;
-import org.objectstyle.wolips.eomodeler.core.model.EOModel;
-import org.objectstyle.wolips.eomodeler.core.model.EOModelGroup;
-import org.objectstyle.wolips.eomodeler.core.model.EOModelVerificationFailure;
-import org.objectstyle.wolips.eomodeler.core.model.IEOModelGroupFactory;
-import org.objectstyle.wolips.eomodeler.editors.EOModelErrorDialog;
-import org.objectstyle.wolips.wizards.EOGeneratorWizard;
+
+/**
+ * Performs the actual operation of creating the java class file 
+ */
 
 public class CreateJavaClassFromNGHTMLTemplateWorkspaceJob extends WorkspaceJob {
-	private IResource _modelFile;
 
-	private boolean _createEOModelGroup;
+	private IResource _htmlFile;
 
-	public CreateJavaClassFromNGHTMLTemplateWorkspaceJob(IResource modelFile, boolean createEOModelGroup) {
-		super((createEOModelGroup) ? "Creating EOModelGroup File" : "Creating EOGenerator File ...");
-		_modelFile = modelFile;
-		_createEOModelGroup = createEOModelGroup;
+	public CreateJavaClassFromNGHTMLTemplateWorkspaceJob(IResource modelFile) {
+		super("Creating EOGenerator File ...");
+		_htmlFile = modelFile;
 	}
 
 	public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 		try {
-			String extension = (_createEOModelGroup) ? ".eomodelgroup" : ".eogen";
-			EOModelGroup modelGroup = new EOModelGroup();
-			final Set<EOModelVerificationFailure> failures = new HashSet<EOModelVerificationFailure>();
-			IEOModelGroupFactory.Utility.loadModelGroup(_modelFile, modelGroup, failures, true, _modelFile.getLocationURI().toURL(), new NullProgressMonitor());
-			EOModel model = modelGroup.getEditingModel();
-			if (model != null) {
-				EOGeneratorModel eogenModel = EOGeneratorWizard.createEOGeneratorModel(_modelFile.getParent(), model, false);
-				String eogenBasePath = URLUtils.cheatAndTurnIntoFile(model.getModelURL()).getAbsolutePath();
-				int dotIndex = eogenBasePath.lastIndexOf('.');
-				eogenBasePath = eogenBasePath.substring(0, dotIndex);
-				String eogenPath = eogenBasePath + extension;
-				IFile eogenFile = _modelFile.getWorkspace().getRoot().getFileForLocation(new Path(eogenPath));
-				for (int dupeNum = 0; eogenFile.exists(); dupeNum++) {
-					eogenPath = eogenBasePath + dupeNum + extension;
-					eogenFile = _modelFile.getWorkspace().getRoot().getFileForLocation(new Path(eogenPath));
-				}
-				eogenModel.writeToFile(eogenFile, null);
+			final IFile file = _htmlFile.getProject().getFile("smu.blorp");
+
+			final InputStream stream = new ByteArrayInputStream("FileContent".getBytes("UTF-8"));
+
+			if (file.exists()) {
+				file.setContents(stream, true, true, monitor);
+			} else {
+				file.create(stream, true, monitor);
 			}
-			if (!failures.isEmpty()) {
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						new EOModelErrorDialog(new Shell(), failures).open();
-					}
-				});
-			}
+
+			stream.close();
 		} catch (final Throwable t) {
 			t.printStackTrace();
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
-					ErrorUtils.openErrorDialog(new Shell(), "EOGen Creation Failed", t);
+					ErrorUtils.openErrorDialog(new Shell(), "HTML Creation Failed", t);
 				}
 			});
 		}

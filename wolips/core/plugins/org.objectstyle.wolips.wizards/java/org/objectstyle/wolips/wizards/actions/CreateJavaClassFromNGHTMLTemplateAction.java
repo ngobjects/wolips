@@ -64,15 +64,20 @@ public class CreateJavaClassFromNGHTMLTemplateAction implements IObjectActionDel
 
 	private ISelection mySelection;
 
-	public void setActivePart(IAction _action, IWorkbenchPart _targetPart) {
-		// do nothing
-	}
+	public void setActivePart(IAction _action, IWorkbenchPart _targetPart) {}
 
 	public void run(IAction _action) {
+		// First we grab hold of the selected file
 		IStructuredSelection selection = (IStructuredSelection) mySelection;
+
 		if (selection != null && !selection.isEmpty()) {
-			IResource modelFile = (IResource) selection.getFirstElement();
-			CreateJavaClassFromNGHTMLTemplateWorkspaceJob generateJob = new CreateJavaClassFromNGHTMLTemplateWorkspaceJob(modelFile, false);
+
+			if( selection.size() > 1 ) {
+				System.out.println( "You can currently only generate classes from one file at a time" );
+			}
+
+			IResource htmlFile = (IResource) selection.getFirstElement();
+			CreateJavaClassFromNGHTMLTemplateWorkspaceJob generateJob = new CreateJavaClassFromNGHTMLTemplateWorkspaceJob(htmlFile);
 			generateJob.schedule();
 		}
 	}
