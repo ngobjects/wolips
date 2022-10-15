@@ -56,12 +56,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-public class CreateJavaClassFromNGHTMLTemplateAction implements IObjectActionDelegate {
-	private ISelection mySelection;
+/**
+ * Given an HTML file, will create an NGComponent subclass with the same name in the same package as the Application class  
+ */
 
-	public CreateJavaClassFromNGHTMLTemplateAction() {
-		super();
-	}
+public class CreateJavaClassFromNGHTMLTemplateAction implements IObjectActionDelegate {
+
+	private ISelection mySelection;
 
 	public void setActivePart(IAction _action, IWorkbenchPart _targetPart) {
 		// do nothing
