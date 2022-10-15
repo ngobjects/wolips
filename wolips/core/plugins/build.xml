@@ -25,7 +25,6 @@
 		<ant dir="org.objectstyle.wolips.jdt" target="all" />
 		<ant dir="org.objectstyle.wolips.bindings" target="all" />
 		<ant dir="org.objectstyle.wolips.ant" target="all" />
-		<ant dir="org.objectstyle.wolips.documentation" target="all" />
 		<ant dir="org.objectstyle.wolips.pbserver" target="all" />
 		<ant dir="org.objectstyle.wolips.templateengine" target="all" />
 		<ant dir="org.objectstyle.wolips.builder" target="all" />
@@ -76,7 +75,6 @@
 		<ant dir="org.objectstyle.wolips.jdt" target="dist" />
 		<ant dir="org.objectstyle.wolips.bindings" target="dist" />
 		<ant dir="org.objectstyle.wolips.ant" target="dist" />
-		<ant dir="org.objectstyle.wolips.documentation" target="dist" />
 		<ant dir="org.objectstyle.wolips.pbserver" target="dist" />
 		<ant dir="org.objectstyle.wolips.ui" target="dist" />
 		<ant dir="org.objectstyle.wolips.deployment.ui" target="dist" />
