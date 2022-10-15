@@ -47,7 +47,7 @@
  * Group, please see <http://objectstyle.org/>.
  *  
  */
-package org.objectstyle.wolips.wizards.actions;
+package is.rebbi.nglips.wizards;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.action.IAction;

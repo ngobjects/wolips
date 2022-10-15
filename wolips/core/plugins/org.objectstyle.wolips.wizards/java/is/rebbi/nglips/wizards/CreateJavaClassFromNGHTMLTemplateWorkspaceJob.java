@@ -47,7 +47,7 @@
  * Group, please see <http://objectstyle.org/>.
  *  
  */
-package org.objectstyle.wolips.wizards.actions;
+package is.rebbi.nglips.wizards;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

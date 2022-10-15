@@ -274,7 +274,7 @@
             nameFilter="*.nghtml"
             objectClass="org.eclipse.core.resources.IResource">
          <action
-               class="org.objectstyle.wolips.wizards.actions.CreateJavaClassFromNGHTMLTemplateAction"
+               class="is.rebbi.nglips.wizards.CreateJavaClassFromNGHTMLTemplateAction"
                icon="icons/woproject/eogenerator_wiz.gif"
                id="org.objectstyle.wolips.wizards.actions.eogenFromEOModel"
                label="Create NGComponent class"
