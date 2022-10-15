@@ -19,11 +19,13 @@ import org.objectstyle.wolips.womodeler.server.IRequestHandler;
 import org.objectstyle.wolips.womodeler.server.Request;
 import org.objectstyle.wolips.womodeler.server.Webserver;
 
+/**
+ * Opens a Java file in Eclipse at a given line number (intended for use with WOExceptionPage) 
+ */
+
 public class OpenJavaFileRequestHandler implements IRequestHandler {
 
-	public void init( Webserver server ) throws Exception {
-		// DO NOTHING
-	}
+	public void init( Webserver server ) throws Exception {}
 
 	public void handle( Request request ) throws Exception {
 		final Map<String, String> params = request.getQueryParameters();
@@ -31,10 +33,12 @@ public class OpenJavaFileRequestHandler implements IRequestHandler {
 		final String className = params.get( "className" );
 		final String lineNumber = params.get( "lineNumber" );
 
+		// All these parameters are required
 		Objects.requireNonNull( appName );
 		Objects.requireNonNull( className );
 		Objects.requireNonNull( lineNumber );
 
+		// Let's locate a project
 		final IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject( appName );
 
 		if( project != null ) {
@@ -55,18 +59,16 @@ public class OpenJavaFileRequestHandler implements IRequestHandler {
 								try {
 									int lineStart = document.getLineOffset( Integer.parseInt( lineNumber ) );
 									editor.selectAndReveal( lineStart, 0 );
-
-									//    					     page.activate(editor);
 								}
 								catch( BadLocationException x ) {
-									// ignore
+									// We're going to a non-existent line. Not likely as is so do nothing.
 								}
 							}
 
 						}
 					}
-					catch( Throwable e1 ) {
-						e1.printStackTrace();
+					catch( Throwable e ) {
+						e.printStackTrace();
 					}
 				}
 			} );
