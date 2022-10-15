@@ -56,10 +56,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-public class CreateEOGenFromEOModelAction implements IObjectActionDelegate {
+public class CreateJavaClassFromNGHTMLTemplateAction implements IObjectActionDelegate {
 	private ISelection mySelection;
 
-	public CreateEOGenFromEOModelAction() {
+	public CreateJavaClassFromNGHTMLTemplateAction() {
 		super();
 	}
 
